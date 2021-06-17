@@ -1,0 +1,12 @@
+module tape
+{
+	csv_header_type NAME;
+}
+#set dateformat=ISO8601
+object recorder
+{
+	parent "house_1";
+	property "panel.energy,panel.power,panel.constant_power,panel.constant_current,panel.constant_admittance";
+	file "house_1.csv";
+	interval -1;
+}

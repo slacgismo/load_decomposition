@@ -1,0 +1,10 @@
+#include "time.glm"
+#include "weather.glm"
+#include "residential.glm"
+#include "recording.glm"
+#set show_progress=FALSE
+object house
+{
+	name "house_1";
+	floor_area 2500 sf;
+}
