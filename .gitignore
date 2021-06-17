@@ -112,5 +112,3 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
-data/house_1.csv
-data/CA-San_Francisco_Intl_Ap.glm
