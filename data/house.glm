@@ -9,7 +9,7 @@ object house
 	object recorder
 	{
 		property "panel.power";
-		file "house_1.csv";
+		file "house.csv";
 		interval -1;
 	};
 }

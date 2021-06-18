@@ -16,7 +16,7 @@ object triplex_meter
 	object recorder
 	{
 		property "measured_real_energy_delta";
-		file "meter_1.csv";
+		file "meter.csv";
 		interval 900;		
 	};
 }

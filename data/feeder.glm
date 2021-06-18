@@ -1,0 +1,28 @@
+clock
+{
+	timezone "PST+8PDT";
+	starttime "2021-01-01 00:00:00 PST";
+	stoptime "2021-01-08 00:00:00 PST";
+}
+#include "weather.glm"
+#include "recording.glm"
+#include "residential.glm"
+#set show_progress=FALSE
+module powerflow;
+object triplex_meter:..50
+{
+	phases AS;
+	nominal_voltage 120;
+	measured_energy_delta_timestep 900;
+	object house
+	{
+		floor_area random.triangle(1000,3000);
+	};
+}
+object collector
+{
+	group "class=triplex_meter";
+	property "sum(measured_real_energy_delta)";
+	interval 900;
+	file "feeder.csv";
+}
