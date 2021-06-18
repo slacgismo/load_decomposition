@@ -1,2 +1,2 @@
-#weather get "CA-San_Francisco_Intl_Ap"
-#input "CA-San_Francisco_Intl_Ap.tmy3"
+#weather get "CO-Denver_Intl_Ap.tmy3"
+#input "CO-Denver_Intl_Ap.tmy3"
