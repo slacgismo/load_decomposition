@@ -3,10 +3,11 @@ module tape
 	csv_header_type NAME;
 }
 #set dateformat=ISO8601
+#set complex_format="%+.6f%+.6fj"
 object recorder
 {
 	parent "house_1";
-	property "panel.energy,panel.power,panel.constant_power,panel.constant_current,panel.constant_admittance";
+	property "panel.energy";
 	file "house_1.csv";
-	interval -1;
+	interval 900;
 }
