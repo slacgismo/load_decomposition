@@ -18,11 +18,10 @@ object triplex_meter
 	{
 		floor_area random.triangle(1000,3000);
 	};
-}
-object collector
-{
-	group "class=triplex_meter";
-	property "sum(measured_real_energy_delta)";
-	interval 60;
-	file "feeder.csv";
+	object recorder
+	{
+		property "measured_real_energy_delta";
+		file "feeder.csv";
+		interval 60;		
+	};
 }
