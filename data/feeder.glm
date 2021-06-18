@@ -9,12 +9,12 @@ clock
 #include "residential.glm"
 #set show_progress=FALSE
 module powerflow;
-object triplex_meter:..50
+object triplex_meter
 {
 	phases AS;
 	nominal_voltage 120;
-	measured_energy_delta_timestep 900;
-	object house
+	measured_energy_delta_timestep 60;
+	object house:..50
 	{
 		floor_area random.triangle(1000,3000);
 	};
@@ -23,6 +23,6 @@ object collector
 {
 	group "class=triplex_meter";
 	property "sum(measured_real_energy_delta)";
-	interval 900;
+	interval 60;
 	file "feeder.csv";
 }
