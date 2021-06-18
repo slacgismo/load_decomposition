@@ -1,0 +1,23 @@
+#include "time.glm"
+#include "weather.glm"
+#include "recording.glm"
+#include "residential.glm"
+#set show_progress=FALSE
+module powerflow;
+object triplex_meter
+{
+	phases AS;
+	nominal_voltage 120;
+	measured_energy_delta_timestep 900;
+	object house
+	{
+		name "house_1";
+		floor_area 2500 sf;
+	};
+	object recorder
+	{
+		property "measured_real_energy_delta";
+		file "meter_1.csv";
+		interval 900;		
+	};
+}

@@ -5,6 +5,11 @@
 #set show_progress=FALSE
 object house
 {
-	name "house_1";
 	floor_area 2500 sf;
+	object recorder
+	{
+		property "panel.power";
+		file "house_1.csv";
+		interval -1;
+	};
 }

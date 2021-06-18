@@ -4,10 +4,3 @@ module tape
 }
 #set dateformat=ISO8601
 #set complex_format="%+.6f%+.6fj"
-object recorder
-{
-	parent "house_1";
-	property "panel.energy";
-	file "house_1.csv";
-	interval 900;
-}
