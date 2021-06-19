@@ -1,0 +1,51 @@
+// set simulation time window
+clock
+{
+	timezone "MST+7MDT";
+	starttime "2020-12-25 00:00:00 MST"; // start early to avoid initialization transient
+ 	stoptime "2022-01-01 00:00:00 MST"; // run for 1 year
+}
+
+// Denver gives interesting building dynamics
+#weather get "CO-Denver_Intl_Ap.tmy3"
+#input "CO-Denver_Intl_Ap.tmy3"
+
+// format CSV data for easy loading in pandas
+module tape
+{
+	csv_header_type NAME;
+}
+#set dateformat=ISO8601
+#set complex_format="%+.6f%+.6fj"
+
+// enable end-use load models of home appliances
+module residential
+{
+	implicit_enduses DISHWASHER|CLOTHESWASHER|DRYER|WATERHEATER|REFRIGERATOR|RANGE|LIGHTS|PLUGS;
+}
+
+// powerflow metering at a single node
+module powerflow;
+object triplex_meter
+{
+	phases AS;
+	nominal_voltage 120;
+	measured_energy_delta_timestep 300;
+
+	// lots of houses
+	object house:..250
+	{
+		floor_area random.triangle(1000,3000);
+	};
+
+	// single recorder for all houses together
+	object recorder
+	{
+		in_svc "2021-01-01 00:00:00 PST";
+		property "measured_real_energy_delta";
+		file "substation.csv";
+		interval 300;	
+		flush 1;	
+	};
+}
+
