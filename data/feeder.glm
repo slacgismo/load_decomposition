@@ -22,7 +22,7 @@ object triplex_meter
 	phases AS;
 	nominal_voltage 120;
 	measured_energy_delta_timestep ${SAMPLETIME:-60};
-	object house:..${NHOMES:-50}
+	object house:..${NHOMES:-100}
 	{
 		floor_area random.triangle(${FLOORAREA_MIN:-1000},${FLOORAREA_MAX:-3000});
 	};
