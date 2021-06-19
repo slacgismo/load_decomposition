@@ -1,7 +1,7 @@
 clock
 {
 	timezone ${TIMEZONE:-"MST+7MDT"};
-	starttime ${INITTIME:-"2021-01-01 00:00:00 MST"};
+	starttime ${INITTIME:-"2020-12-26 00:00:00 MST"};
 	stoptime ${STOPTIME:-"2022-01-01 00:00:00 MST"};
 }
 #weather get ${WEATHER:-"CO-Denver_Intl_Ap.tmy3"}
