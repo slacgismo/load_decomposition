@@ -3,4 +3,5 @@ module climate;
 object climate
 {
 	tmyfile "CO-Denver_Intl_Ap.tmy3";
+	interpolate "QUADRATIC";
 }

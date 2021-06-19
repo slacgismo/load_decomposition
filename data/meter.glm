@@ -1,22 +1,35 @@
-#include "time.glm"
-#include "weather.glm"
-#include "recording.glm"
-#include "residential.glm"
-#set show_progress=FALSE
+clock
+{
+	timezone ${TIMEZONE:-"MST+7MDT"};
+	starttime ${STARTTIME:-"2021-01-01 00:00:00 MST"};
+	stoptime ${STOPTIME:-"2022-01-01 00:00:00 MST"};
+}
+#weather get ${WEATHER:-"CO-Denver_Intl_Ap.tmy3"}
+#input ${WEATHER:-"CO-Denver_Intl_Ap.tmy3"} -p interpolate=QUADRATIC
+module residential
+{
+	implicit_enduses ${ENDUSES:-DISHWASHER|CLOTHESWASHER|DRYER|WATERHEATER|REFRIGERATOR|RANGE|LIGHTS|PLUGS};
+}
+module tape
+{
+	csv_header_type NAME;
+}
+#set dateformat=ISO8601
+#set complex_format="%+.6f%+.6fj"
 module powerflow;
 object triplex_meter
 {
 	phases AS;
-	nominal_voltage 120;
-	measured_energy_delta_timestep 900;
+	nominal_voltage 120 V;
+	measured_energy_delta_timestep ${SAMPLETIME:-900};
 	object house
 	{
-		floor_area 2500 sf;
+		floor_area ${FLOORAREA:-2500 sf};
 	};
 	object recorder
 	{
 		property "measured_real_energy_delta";
-		file "meter.csv";
-		interval 900;		
+		file ${modelname/.glm/.csv};
+		interval ${SAMPLETIME:-900};		
 	};
 }
