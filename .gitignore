@@ -114,5 +114,4 @@ dmypy.json
 .pyre/
 data/gridlabd.json
 data/*.csv
-
-data/feeder.csv
+.DS_Store
