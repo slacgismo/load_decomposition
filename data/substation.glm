@@ -9,6 +9,7 @@ clock
 module residential
 {
 	implicit_enduses ${ENDUSES:-DISHWASHER|CLOTHESWASHER|DRYER|WATERHEATER|REFRIGERATOR|RANGE|LIGHTS|PLUGS};
+	implicit_enduse_source RBSA2014;
 }
 module tape
 {
@@ -21,17 +22,47 @@ object triplex_meter
 {
 	phases AS;
 	nominal_voltage 120;
-	measured_energy_delta_timestep ${SAMPLETIME:-60};
-	object house:..${NHOMES:-500}
+	measured_energy_delta_timestep ${SAMPLETIME:-4};
+	object house:..${NHOMES:-100}
 	{
 		floor_area random.triangle(${FLOORAREA_MIN:-1000},${FLOORAREA_MAX:-3000});
+		thermal_integrity_level BELOW_NORMAL;
+		motor_efficiency VERY_POOR;
+		fan_type ONE_SPEED;
+	};
+	object house:..${NHOMES:-100}
+	{
+		floor_area random.triangle(${FLOORAREA_MIN:-1000},${FLOORAREA_MAX:-3000});
+		thermal_integrity_level NORMAL;
+		motor_efficiency POOR;
+		fan_type ONE_SPEED;
+	};
+	object house:..${NHOMES:-100}
+	{
+		floor_area random.triangle(${FLOORAREA_MIN:-1000},${FLOORAREA_MAX:-3000});
+		thermal_integrity_level ABOVE_NORMAL;
+		motor_efficiency AVERAGE;
+		fan_type ONE_SPEED;
+	};
+	object house:..${NHOMES:-100}
+	{
+		floor_area random.triangle(${FLOORAREA_MIN:-1000},${FLOORAREA_MAX:-3000});
+		thermal_integrity_level GOOD;
+		motor_efficiency GOOD;
+		fan_type TWO_SPEED;
+	};
+	object house:..${NHOMES:-100}
+	{
+		floor_area random.triangle(${FLOORAREA_MIN:-1000},${FLOORAREA_MAX:-3000});
+		thermal_integrity_level VERY_GOOD;
+		motor_efficiency VERY_GOOD;
+		fan_type TWO_SPEED;
 	};
 	object recorder
 	{
 		in_svc ${STARTTIME:-"2021-01-01 00:00:00 MST"};
 		property "measured_real_energy_delta";
 		file ${modelname/.glm/.csv};
-		interval ${SAMPLETIME:-60};		
+		interval ${SAMPLETIME:-4};		
 	};
 }
-#set minimum_timestep=${SAMPLETIME:-60}

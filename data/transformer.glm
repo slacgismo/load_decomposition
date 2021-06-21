@@ -9,6 +9,7 @@ clock
 module residential
 {
 	implicit_enduses ${ENDUSES:-DISHWASHER|CLOTHESWASHER|DRYER|WATERHEATER|REFRIGERATOR|RANGE|LIGHTS|PLUGS};
+	implicit_enduse_source RBSA2014;
 }
 module tape
 {

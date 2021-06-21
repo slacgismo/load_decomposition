@@ -113,3 +113,6 @@ dmypy.json
 # Pyre type checker
 .pyre/
 data/gridlabd.json
+data/*.csv
+
+data/feeder.csv

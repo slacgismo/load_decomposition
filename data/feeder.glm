@@ -9,6 +9,7 @@ clock
 module residential
 {
 	implicit_enduses ${ENDUSES:-DISHWASHER|CLOTHESWASHER|DRYER|WATERHEATER|REFRIGERATOR|RANGE|LIGHTS|PLUGS};
+	implicit_enduse_source RBSA2014;	
 }
 module tape
 {
@@ -21,7 +22,7 @@ object triplex_meter
 {
 	phases AS;
 	nominal_voltage 120;
-	measured_energy_delta_timestep ${SAMPLETIME:-60};
+	measured_energy_delta_timestep ${SAMPLETIME:-4};
 	object house:..${NHOMES:-20}
 	{
 		floor_area random.triangle(${FLOORAREA_MIN:-1000},${FLOORAREA_MAX:-3000});
@@ -61,7 +62,6 @@ object triplex_meter
 	{
 		property "measured_real_energy_delta";
 		file ${modelname/.glm/.csv};
-		interval ${SAMPLETIME:-60};		
+		interval ${SAMPLETIME:-4};		
 	};
 }
-#set minimum_timestep=${SAMPLETIME:-60}
