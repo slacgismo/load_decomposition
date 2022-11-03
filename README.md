@@ -10,4 +10,4 @@ Alternative, you can download [Docker](https://www.docker.org), pull the [GridLA
 alias gridlabd="docker run -it -v $PWD:$PWD slacgismo/gridlabd:latest gridlabd -W $PWD"
 ~~~
 
-Add this command to you `~/.bashrc` file will make this available to all notebooks.
+Add this command to your `~/.bashrc` file will make this available to all notebooks.
